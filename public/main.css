@@ -1,0 +1,219 @@
+/* Imported fonts -> just for testing */
+@import url('https://fonts.googleapis.com/css?family=Acme|Arvo|EB+Garamond|Josefin+Sans|Ubuntu&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "EB Garamond", "Alternates", "Be Vietnam"; 
+}
+
+.container {
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    background-image: url(https://images.unsplash.com/photo-1527853787696-f7be74f2e39a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80);
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.card {
+    padding:40px;
+    width:800px;
+    height:600px;
+    background-color:white;
+    box-shadow: 0 15px 40px rgba(0,0,0, .1);
+    border-radius:5px;
+    position: relative;
+    background: inherit;
+    overflow: hidden;
+    z-index:10;
+}
+
+.card:before{
+    content: '';
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    background: inherit; 
+    position: absolute;
+    left: -25px;
+    right: 0;
+    bottom: 0;
+    box-shadow: inset 0 0 2000px rgba(255,255,255,0.5);
+    filter: blur(25px);
+    margin:-20px;
+    z-index:-1;
+}   
+
+.main-primary--heading {
+    background: linear-gradient(to top, #9932CC 0%, #483D8B 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+    font-weight:700;
+    text-align:center;
+    position:relative;
+    color: transparent;
+    border-bottom: 1px solid black;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 60px;
+    margin-top:20px;
+    font-size:42px;
+}
+
+.secondary-heading {
+   color: #F0FFFF;
+   font-family: 'Times New Roman';
+   font-weight: 100;
+  }
+
+ .container--selection {
+   display:flex;
+   flex-wrap: nowrap;
+ }
+
+ .container--selection .el-select {
+      margin: 0 10px;
+ }
+
+ hr {
+     margin:10px 0;
+ }
+ 
+ .accommondations {
+     padding:20px;
+     max-width:1200px;
+     margin:0 auto;
+ }
+
+  .accommondation {
+   background-color:white;
+   border-radius:5px;
+   box-shadow: 0 15px 40px rgba(0,0,0, .1);
+   margin:1rem;
+   width:100%;
+   max-width:800px;
+   padding:10px 30px;
+   position:relative;
+   transition: all 0.2s ease;
+ }
+
+ .accommondation:hover {
+    background-color:#483D8B;
+
+    /*
+    animation-name: moveInLeft;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-out;
+    */
+ }
+/* 
+ @keyframes moveInLeft {
+    0% {
+        opacity: 0.7;
+        transform: translateX(-10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+*/
+.btn-right {
+  float:right;
+  width:120px;
+}
+
+.el-input {
+    width: 100px;
+  }
+
+  .el-select {
+      width:200px;
+  }
+
+  .inline-block {
+      display:inline-block;
+      text-transform:uppercase;
+  }
+
+  .values {
+      font-size: 20px;
+      font-family: 'Ubuntu';
+      font-weight: 0;
+  }
+
+  .accommondation .el-icon-arrow-right {
+      position:absolute;
+      top:44%;
+      left:4px;
+      cursor:pointer;
+  }
+
+  .accommondation .el-icon-arrow-down {
+    position:absolute;
+    top:44%;
+    left:4px;
+    cursor:pointer;
+}
+
+@media only screen and (max-width: 770px) {
+ .card {
+    padding:40px;
+    width:500px;
+    height:400px;
+ }   
+
+ .container--selection {
+    flex-direction: column;
+ }
+
+.main-primary--heading {
+    font-size:30px;
+}
+.container--selection .el-select {
+    margin: 5px 0; 
+}
+.values {
+    font-size: 16px;
+}
+}
+
+
+@media only screen and (max-width: 590px) {
+ .card {
+    padding:40px;
+    width:100%;
+    height:400px;
+ }   
+
+.container-select-confirm {
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+} 
+
+.secondary-heading-black {
+    font-size: 18px;
+    color:black;
+}
+
+.main-primary--heading {
+    font-size:20px;
+}
+
+.secondary-heading {
+    font-size:16px;
+}
+
+}
