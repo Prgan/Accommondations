@@ -17,7 +17,7 @@
                 </h3>
             <h3 class="inline-block values">All selected prices:</h3>
             <p class="inline-block values">
-            <span class="inline-block values" v-for="(curr, key) in CalculatedChoosenCurrency" :key="key">
+            <span class="inline-block values accs" v-for="(curr, key) in CalculatedChoosenCurrency" :key="key">
             {{curr.currencyName}}: {{curr.priceInCurrency }}  <span v-if="key !== LengthOfSelectedCurrency-1"> , </span>
             </span>
                 </p>
@@ -29,7 +29,7 @@
         </div>    
 
         <div v-else>
-        <h2>You should't be here yet, you havent choosen the currency or accommondation</h2>
+        <h2>You should't be here yet, you havent choosen the currency and /or accommondation</h2>
         <el-button class="btn-right" @click="toHomePage" type="primary">Go back</el-button>
         </div> 
     </div>
@@ -72,12 +72,13 @@ export default {
 .container {
     background-position: top;
 }
-
 .main-primary--heading {
   margin-bottom: 10px;
 }
 .width-bth {
     width:160px;
-
+}
+.accs {
+  font-weight: 600;
 }
 </style>

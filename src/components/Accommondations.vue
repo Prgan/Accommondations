@@ -1,6 +1,7 @@
 <template>
 <div class="container-img">
-  <div class="accommondations">
+  <div class="accommondations" v-loading="loading">
+    <div class="container-btn"> <a href="/"><i class="el-icon-back"></i> </a></div>
   <h1 class="main-primary--heading">Accommondations</h1>
     <div class="container--selection">
       <h3 class="secondary-heading">
@@ -101,7 +102,8 @@ export default {
       currentPageNumber: 1,
       info: {},
       smallPagination: false,
-      width: 0
+      width: 0,
+      loading: true
     }
   },
   components: {
@@ -113,6 +115,7 @@ export default {
     [Popover.name]: Popover
   },
   mounted () {
+    this.loading = (this.$store.state.filteringAccommondations.length > 0) ? false : false
   },
   methods: {
     ...mapActions(["fetchAccommodations",
@@ -179,13 +182,13 @@ export default {
       "FilterByParamteres","SearchWord"]),
     SearchWord: {
       get () {
-        if(this.FilteringByAvaliability !== ''){
-          this.$store.commit('filteringByAvaliability', this.FilteringByAvaliability)
-          this.$store.commit('sortByParamteres', this.SortByParamteresOption)
-        } else if (this.SortByParamteresOption !== '' && this.FilteringAccommondations === '') {
+        if(this.SortByParamteresOption !== '' && this.FilteringAccommondations === ''){
           this.$store.commit('sortByParamteres', this.SortByParamteresOption)
         } else if (this.SortByParamteresOption === '' && this.FilteringAccommondations !== '') {
+          this.$store.commit('filteringByAvaliability', this.FilteringByAvaliability)
+        } else if (this.SortByParamteresOption !== '' && this.FilteringAccommondations !== '') {
            this.$store.commit('filteringByAvaliability', this.FilteringByAvaliability)
+           this.$store.commit('sortByParamteres', this.SortByParamteresOption)
         }
         return this.$store.state.searchWord
       },
@@ -202,12 +205,15 @@ export default {
       }
     },
     FilteringByAvaliability: {
-      get() {
+      get() {        
         return this.$store.state.filteringByAvaliability
       },
       set(value) {
-        if(this.SortByParamteresOption !== null || this.SortByParamteresOption === '' || this.SortByParamteresOption === undefined) {
+        if(this.SortByParamteresOption !== '') {
           this.$store.commit('sortByParamteres', this.SortByParamteresOption)
+        }
+        if(value != this.SortByParamteres) {
+          this.$store.commit('searchWord', this.SearchWord)
         }
         return this.$store.dispatch('filteringByAvaliability', value)
       }
@@ -234,6 +240,28 @@ export default {
    text-align:center;
  }
 
+.el-icon-back {
+  font-size:40px;
+  color:white;
+  position: relative;
+  top:20px;
+  left:20px;
+}
+ .container-btn {
+   position:fixed;
+   height:80px;
+   width:80px;
+   border-radius: 50%;
+   background-color: blueviolet;
+   right:50px;
+   top:30px;
+ }
+
+  .container-btn:hover {
+    cursor: pointer;
+    background-color:purple;
+  }
+
  .container-accommondation {
    display:flex;
    flex-direction:column;
@@ -257,5 +285,24 @@ export default {
 .el-input {
   width:200px;
 }
+@media only screen and (max-width: 850px) {
+.el-icon-back {
+  font-size:30px;
+  color:white;
+  position: relative;
+  top:15px;
+  left:15px;
+}
+ .container-btn {
+   position:fixed;
+   height:60px;
+   width:60px;
+   border-radius: 50%;
+   background-color: blueviolet;
+   right:50px;
+   top:30px;
+ }
+}
+
 
 </style>

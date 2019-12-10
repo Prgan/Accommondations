@@ -29,21 +29,16 @@ export default {
   methods: {
     ...mapActions(['fetchCurrency', 'selectedCurrency']),
     confirmBtn () {
-      if(this.$store.state.selectedCurrency.length > 0){
+      if(this.$store.state.selectedCurrency.length > 0 && this.$store.state.selectedCurrency.length < 6){
          this.$router.push('/Accommondations')
       } else {
         this.$notify({
           title: 'Warning',
-          message: 'Choose at least one currency',
+          message: 'Choose at least one currency and max 5',
           type: 'warning'
         });
       }
     }
-      /* eslint-disable no-console */
-    //  console.log(this.$slots);
-      /* eslint-enable no-console */
-      // this.$router.push('/PageNotFound');
-
   },
   computed: mapGetters(["Currency"]),
   created () {
@@ -51,8 +46,6 @@ export default {
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .card {
   display:flex;

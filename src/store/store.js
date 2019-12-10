@@ -78,13 +78,15 @@ export const store = new Vuex.Store({
           if (!(option) || option === '{}') {
             state.filteringByAvaliability = ''
           } else {
-            if(state.filteringAccommondations.length === 0 && option.length === 0) {
-              state.filteringAccommondations = state.allAccommondations
-            }
-           state.filteringByAvaliability = option
-           state.filteringAccommondations = state.filteringAccommondations.filter(
-               x => x.avaliable === (option === 'Avaliable' ? true : false))
+            state.filteringByAvaliability = option
 
+            if(option !== '') {
+              state.filteringAccommondations = state.filteringAccommondations.filter(
+                x => x.avaliable === (option === 'Avaliable' ? true : false))
+            } /*else {
+              state.filteringAccommondations = state.allAccommondations.filter(
+                x => x.avaliable === (option === 'Avaliable' ? true : false))
+            } */
          }
         },
         sortByParamteres: (state, option) => {

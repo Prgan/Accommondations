@@ -3,6 +3,7 @@
    <el-select
     v-model="selectedOption"
     multiple
+    :multiple-limit="5"
     placeholder="Choose your currency"
     @change="fireAction"
     >
@@ -40,15 +41,6 @@ export default {
   },
   methods: {
     ...mapActions(['selectedCurrency']),
-      handleCheckAllChange (val) {
-          this.selectedOption = val ? this.currencyAndCourse : [];
-          this.isIndeterminate = false;
-      },
-      handleCheckedOptionChange (val) {
-        let checkedCount = val.length;
-        this.checkAll = checkedCount === this.currencyAndCourse.length;
-        this.isIndeterminate = checkedCount > 0 && checkedCount < this.currencyAndCourse.length;
-      },
       fireAction () {
         this.$store.dispatch('selectedCurrency', this.selectedOption)
       }
